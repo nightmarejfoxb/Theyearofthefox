@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PatrollingEnemy : MonoBehaviour
 {
-    private bool sideCollision = false;
+    public bool sideCollision = false;
 
     public Transform groundDetector;
     public float speed = 2;
@@ -35,6 +35,10 @@ public class PatrollingEnemy : MonoBehaviour
             if (!sideCollision)
             {
                 collision.gameObject.GetComponent<PlayerController>().Hurt();
+            }
+            else
+            {
+                Destroy(gameObject)
             }
             */
         }
