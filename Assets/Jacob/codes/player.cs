@@ -30,7 +30,7 @@ public class player : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector2.right * moveSpeed * Time.deltaTime * horizontalInput);
-        ai.SetFloat("move", 0);
+        ai.SetFloat("move", Mathf.Abs(horizontalInput));
 
         //flip the sprite if facing left
         if (horizontalInput > 0)
