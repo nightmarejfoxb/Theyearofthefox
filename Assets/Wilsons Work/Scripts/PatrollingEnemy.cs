@@ -5,13 +5,16 @@ using UnityEngine;
 public class PatrollingEnemy : MonoBehaviour
 {
     public bool sideCollision = false;
+    public Animator animator;
 
     public Transform groundDetector;
-    public float speed = 2;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
         groundDetector = gameObject.transform.Find("GroundDetector").transform;
+        animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -25,22 +28,29 @@ public class PatrollingEnemy : MonoBehaviour
             transform.Rotate(0f,180f,0f);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Tail"))
         {
-            /*
-             * 
-             * Update when jacob completes the player controller
+           
             if (!sideCollision)
             {
-                collision.gameObject.GetComponent<PlayerController>().Hurt();
+                //collision.gameObject.GetComponent<PlayerController>().Hurt();
             }
             else
             {
-                Destroy(gameObject)
+                speed = 0.0f;
+
+                animator.SetBool("IsHurt", true);
+                
+                Invoke("DelayedDestroy", 1);
             }
-            */
+            
         }
+    }
+
+    void DelayedDestroy()
+    {
+        Destroy(gameObject);
     }
 }

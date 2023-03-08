@@ -26,4 +26,12 @@ public class SideDetector : MonoBehaviour
             parent.GetComponent<PatrollingEnemy>().sideCollision = true;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tail"))
+        {
+            parent.GetComponent<PatrollingEnemy>().sideCollision = true;
+        }
+    }
 }
