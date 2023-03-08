@@ -30,6 +30,7 @@ public class PatrollingEnemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.CompareTag("Tail"))
         {
            
@@ -39,18 +40,26 @@ public class PatrollingEnemy : MonoBehaviour
             }
             else
             {
-                speed = 0.0f;
-
-                animator.SetBool("IsHurt", true);
                 
-                Invoke("DelayedDestroy", 1);
             }
             
         }
+
+        */
     }
 
     void DelayedDestroy()
     {
         Destroy(gameObject);
+    }
+
+    public void Hurt()
+    {
+        speed = 0.0f;
+
+        animator.SetBool("IsHurt", true);
+
+        Invoke("DelayedDestroy", 1);
+
     }
 }
