@@ -9,12 +9,16 @@ public class PatrollingEnemy : MonoBehaviour
 
     public Transform groundDetector;
     public float speed;
+
+    public AudioClip deathSound;
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         groundDetector = gameObject.transform.Find("GroundDetector").transform;
         animator = GetComponent<Animator>();
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,8 +62,10 @@ public class PatrollingEnemy : MonoBehaviour
         speed = 0.0f;
 
         animator.SetBool("IsHurt", true);
+        audioSource.PlayOneShot(deathSound);
 
         Invoke("DelayedDestroy", 1);
-
+        
     }
+
 }
