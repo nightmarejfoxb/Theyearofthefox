@@ -4,16 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-
   - Platform
-
-  - Tail
   - Enemy
+  - Tail
+  - coin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - 
   - Water
   - UI
   - 

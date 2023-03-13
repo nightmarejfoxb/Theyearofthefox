@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class coin : MonoBehaviour
 {
-    
+    private GameManager gameManager;
     public static int totalCoins = 0;
+    public int pointValue;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("maincode").GetComponent<GameManager>();
+    }
 
     void Awake()
     {
@@ -18,9 +24,10 @@ public class coin : MonoBehaviour
         //Destroy the coin if Object tagged Player comes in contact with it
         if (c2d.CompareTag("Player"))
         {
-          
+            
             totalCoins++;
             Destroy(gameObject);
+            gameManager.UpdateScore(pointValue);
         }
     }
 }

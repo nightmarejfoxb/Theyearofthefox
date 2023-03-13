@@ -9,10 +9,17 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     bool gameOver = false;
-    int score = 0;
+    private int score = 0;
     public GameObject gameovertext;
-    public TextMeshProUGUI textscore;
+    public TextMeshProUGUI scoreText;
+    
 
+
+
+    private void Start()
+    {
+        UpdateScore(0);
+    }
     private void Awake()
     {
         instance = this;
@@ -31,10 +38,16 @@ public class GameManager : MonoBehaviour
         if (!gameOver)
         {
             score++;
-            textscore.text = score.ToString();
+            scoreText.text = score.ToString();
 
             print(score);
         }
+    }
+
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = "Score: " + score;
     }
 
     public void restart()
