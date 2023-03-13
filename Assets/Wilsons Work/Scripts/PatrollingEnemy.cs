@@ -9,12 +9,23 @@ public class PatrollingEnemy : MonoBehaviour
 
     public Transform groundDetector;
     public float speed;
+
+    public AudioClip deathSound;
+    public AudioSource audioSource;
+
+    [SerializeField] float health, maxHealth = 2f;
+
+    public GameObject sender;
+
     // Start is called before the first frame update
     void Start()
     {
         groundDetector = gameObject.transform.Find("GroundDetector").transform;
         animator = GetComponent<Animator>();
-        
+        audioSource = GetComponent<AudioSource>();
+        health = maxHealth;
+
+        sender = GameObject.Find("fox spirit");
     }
 
     // Update is called once per frame
@@ -58,8 +69,22 @@ public class PatrollingEnemy : MonoBehaviour
         speed = 0.0f;
 
         animator.SetBool("IsHurt", true);
+        audioSource.PlayOneShot(deathSound);
 
         Invoke("DelayedDestroy", 1);
-
+        
     }
+
+    public void TakeDamage(float damageAmount)
+    {
+        Debug.Log("I TOOK DAMAGE!");
+        health -= damageAmount; // 2 -> 1 -> 0 = Enemy Has Died
+        GetComponent<knonkback>().PlayFeedback(sender);
+
+        if(health <= 0)
+        {
+            Hurt();
+        }
+    }
+
 }

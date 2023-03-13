@@ -6,6 +6,8 @@ public class SideDetector : MonoBehaviour
 {
 
     private GameObject parent;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,16 @@ public class SideDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tail"))
         {
-            parent.GetComponent<PatrollingEnemy>().sideCollision = true;
+            if (parent.name.Equals("Boss"))
+            {
+                parent.GetComponent<BossScript>().sideCollision = true;
+                Debug.Log("Boss Trigger");
+            }
+            else
+            {
+                parent.GetComponent<PatrollingEnemy>().sideCollision = true;
+                Debug.Log("Enemy Trigger");
+            }
         }
     }
 }

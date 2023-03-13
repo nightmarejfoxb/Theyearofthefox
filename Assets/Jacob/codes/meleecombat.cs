@@ -49,7 +49,7 @@ public class meleecombat : MonoBehaviour
         {
             if(enemy.gameObject.CompareTag("Enemy"))
             {
-                enemy.gameObject.GetComponent<PatrollingEnemy>().Hurt();
+                enemy.gameObject.GetComponent<PatrollingEnemy>().TakeDamage(1);
             }
             Debug.Log("we hit" + enemy.name);
         }

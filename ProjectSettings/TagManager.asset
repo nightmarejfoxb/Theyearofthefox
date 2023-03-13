@@ -3,12 +3,6 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-
-  - Tail
-
-  - Ground
-  - Platform
 
   layers:
   - Default
